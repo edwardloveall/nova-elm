@@ -14,5 +14,109 @@
 
   "main": "main.dist.js",
 
-  "activationEvents": ["onLanguage:elm", "onWorkspaceContains:elm.json"]
+  "activationEvents": ["onLanguage:elm", "onWorkspaceContains:elm.json"],
+
+  "entitlements": {
+    "process": true
+  },
+
+  "config": [
+    {
+      "key": "hansjhoffman.elm.config.elmPath",
+      "title": "Elm Path",
+      "description": "The path to your elm binary. Should be empty by default, in that case it will assume the name and try to first get it from a local npm installation or a global one. If you sent it manually, it will not try to load from the npm folder.",
+      "type": "path"
+    },
+    {
+      "key": "hansjhoffman.elm.config.elmFormatPath",
+      "title": "Elm Format Path",
+      "description": "The path to your elm-format binary. Should be empty by default, in that case it will assume the name and try to first get it from a local npm installation or a global one. If you sent it manually, it will not try to load from the npm folder.",
+      "type": "path"
+    },
+    {
+      "key": "hansjhoffman.elm.config.elmReviewPath",
+      "title": "Elm Review Path",
+      "description": "The path to your elm-review binary. Should be empty by default, in that case it will assume the name and try to first get it from a local npm installation or a global one. If you sent it manually, it will not try to load from the npm folder.",
+      "type": "path"
+    },
+    {
+      "key": "hansjhoffman.elm.config.elmTestPath",
+      "title": "Elm Test Path",
+      "description": "The path to your elm-test binary. Should be empty by default, in that case it will assume the name and try to first get it from a local npm installation or a global one. If you sent it manually, it will not try to load from the npm folder.",
+      "type": "path"
+    },
+    {
+      "key": "hansjhoffman.elm.config.elmReviewDiagnostics",
+      "title": "Elm Review Diagnostics",
+      "description": "Set severity or disable linting diagnostics for elm-review.",
+      "type": "enum",
+      "values": ["error", "off", "warning"],
+      "default": "off"
+    },
+    {
+      "key": "hansjhoffman.elm.config.elmTrace",
+      "title": "LS Tracing",
+      "description": "Traces the communication between Nova and the language server.",
+      "type": "enum",
+      "values": ["error", "off", "warning"],
+      "default": "off"
+    },
+    {
+      "key": "hansjhoffman.elm.config.disableLSDiagnostics",
+      "title": "Disable Language Server Diagnostics",
+      "description": "Disable linting diagnostics from the language server.",
+      "type": "boolean",
+      "default": false
+    }
+  ],
+
+  "configWorkspace": [
+    {
+      "key": "hansjhoffman.elm.config.elmPath",
+      "title": "Elm Path",
+      "description": "The path to your elm binary. Should be empty by default, in that case it will assume the name and try to first get it from a local npm installation or a global one. If you sent it manually, it will not try to load from the npm folder.",
+      "type": "path"
+    },
+    {
+      "key": "hansjhoffman.elm.config.elmFormatPath",
+      "title": "Elm Format Path",
+      "description": "The path to your elm-format binary. Should be empty by default, in that case it will assume the name and try to first get it from a local npm installation or a global one. If you sent it manually, it will not try to load from the npm folder.",
+      "type": "path"
+    },
+    {
+      "key": "hansjhoffman.elm.config.elmReviewPath",
+      "title": "Elm Review Path",
+      "description": "The path to your elm-review binary. Should be empty by default, in that case it will assume the name and try to first get it from a local npm installation or a global one. If you sent it manually, it will not try to load from the npm folder.",
+      "type": "path"
+    },
+    {
+      "key": "hansjhoffman.elm.config.elmTestPath",
+      "title": "Elm Test Path",
+      "description": "The path to your elm-test binary. Should be empty by default, in that case it will assume the name and try to first get it from a local npm installation or a global one. If you sent it manually, it will not try to load from the npm folder.",
+      "type": "path"
+    },
+    {
+      "key": "hansjhoffman.elm.config.elmReviewDiagnostics",
+      "title": "Elm Review Diagnostics",
+      "description": "Set severity or disable linting diagnostics for elm-review.",
+      "type": "enum",
+      "values": ["error", "off", "warning"],
+      "default": "off"
+    },
+    {
+      "key": "hansjhoffman.elm.config.elmTrace",
+      "title": "LS Tracing",
+      "description": "Traces the communication between Nova and the language server.",
+      "type": "enum",
+      "values": ["error", "off", "warning"],
+      "default": "off"
+    },
+    {
+      "key": "hansjhoffman.elm.config.disableLSDiagnostics",
+      "title": "Disable Language Server Diagnostics",
+      "description": "Disable linting diagnostics from the language server.",
+      "type": "boolean",
+      "default": false
+    }
+  ]
 }
