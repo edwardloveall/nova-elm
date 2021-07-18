@@ -149,10 +149,10 @@ const getClientSettings = (): ClientSettings => ({
  */
 
 let elmExtension: O.Option<ElmExtension> = O.none;
-const compositeDisposable: CompositeDisposable = new CompositeDisposable();
 
-export class ElmExtension {
+class ElmExtension {
   private languageClient: O.Option<LanguageClient>;
+  private compositeDisposable: CompositeDisposable = new CompositeDisposable();
 
   constructor() {
     this.languageClient = O.none;
@@ -193,7 +193,7 @@ export class ElmExtension {
                 this.languageClient,
                 O.map((oldClient) => {
                   oldClient.stop();
-                  nova.subscriptions.remove(compositeDisposable);
+                  nova.subscriptions.remove(this.compositeDisposable);
                   this.languageClient = O.none;
                 }),
               );
@@ -211,7 +211,7 @@ export class ElmExtension {
                 },
               );
 
-              compositeDisposable.add(
+              this.compositeDisposable.add(
                 newClient.onDidStop((err) => {
                   let message = nova.localize("Elm Language Server stopped unexpectedly");
                   if (err) {
@@ -235,7 +235,7 @@ export class ElmExtension {
                 }),
               );
 
-              nova.subscriptions.add(compositeDisposable);
+              nova.subscriptions.add(this.compositeDisposable);
 
               this.languageClient = O.some(newClient);
 
@@ -285,7 +285,7 @@ export class ElmExtension {
               this.languageClient,
               O.map((client) => {
                 client.stop();
-                nova.subscriptions.remove(compositeDisposable);
+                nova.subscriptions.remove(this.compositeDisposable);
                 this.languageClient = O.none;
               }),
             );

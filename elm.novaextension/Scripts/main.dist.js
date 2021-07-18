@@ -1385,9 +1385,9 @@ var getClientSettings = function () { return ({
  * Main
  */
 var elmExtension = none;
-var compositeDisposable = new CompositeDisposable();
 var ElmExtension = /** @class */ (function () {
     function ElmExtension() {
+        this.compositeDisposable = new CompositeDisposable();
         this.languageClient = none;
         this.start();
     }
@@ -1413,7 +1413,7 @@ var ElmExtension = /** @class */ (function () {
                     }
                     pipe$1(_this.languageClient, map(function (oldClient) {
                         oldClient.stop();
-                        nova.subscriptions.remove(compositeDisposable);
+                        nova.subscriptions.remove(_this.compositeDisposable);
                         _this.languageClient = none;
                     }));
                     var newClient = new LanguageClient("elmLS", nova.extension.name, {
@@ -1423,7 +1423,7 @@ var ElmExtension = /** @class */ (function () {
                         initializationOptions: getClientSettings(),
                         syntaxes: ["elm"],
                     });
-                    compositeDisposable.add(newClient.onDidStop(function (err) {
+                    _this.compositeDisposable.add(newClient.onDidStop(function (err) {
                         var message = nova.localize("Elm Language Server stopped unexpectedly");
                         if (err) {
                             message += ":\n\n" + err.toString();
@@ -1435,7 +1435,7 @@ var ElmExtension = /** @class */ (function () {
                         nova.workspace.showActionPanel(message, { buttons: [nova.localize("Restart"), nova.localize("Ignore")] }, function (idx) {
                         });
                     }));
-                    nova.subscriptions.add(compositeDisposable);
+                    nova.subscriptions.add(_this.compositeDisposable);
                     _this.languageClient = some(newClient);
                     resolve();
                 });
@@ -1472,7 +1472,7 @@ var ElmExtension = /** @class */ (function () {
             return new Promise(function (resolve, _reject) {
                 pipe$1(_this.languageClient, map(function (client) {
                     client.stop();
-                    nova.subscriptions.remove(compositeDisposable);
+                    nova.subscriptions.remove(_this.compositeDisposable);
                     _this.languageClient = none;
                 }));
                 resolve();
@@ -1504,7 +1504,6 @@ var deactivate = function () {
     }));
 };
 
-exports.ElmExtension = ElmExtension;
 exports.activate = activate;
 exports.deactivate = deactivate;
 //# sourceMappingURL=main.dist.js.map
